@@ -22,19 +22,15 @@ end
 Alfred.with_friendly_error do |alfred|
   alfred.with_rescue_feedback = true
 
-  fb = alfred.feedback
+  #fb = alfred.feedback
+  fb1 = alfred.feedback
 
-  #query1 = ARGV[0]
-  #ARGV.shift
-  #type = ARGV[0]
 
- # if (type =~ /[d|h|c]/) == nil 
- #   raise Alfred::InvalidFormat, "Usage: ascii [d|h|c] args"
- # end 
-
-  result = IPSocket.getaddress(Socket.gethostname);
-  show_chars(fb, result)
-  
-  puts fb.to_xml
+  #result = IPSocket.getaddress(Socket.gethostname);
+  local_ip = UDPSocket.open {|s| s.connect("64.233.187.99", 1); s.addr.last}
+  #show_chars(fb, result)
+  show_chars(fb1, local_ip)
+  #puts fb.to_xml
+  puts fb1.to_xml
 end
 
